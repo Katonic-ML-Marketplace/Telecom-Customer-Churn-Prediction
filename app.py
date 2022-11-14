@@ -1,6 +1,4 @@
 import pickle
-import requests
-from io import BytesIO
 from PIL import Image
 
 import pandas as pd
@@ -10,9 +8,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 
-
-response = requests.get(url='https://katonic.ai/favicon.ico')
-im = Image.open(BytesIO(response.content))
+im = Image.open('image/favicon.ico')
 
 st.set_page_config(
     page_title='Telecom Customer Churn Prediction App', 
@@ -173,7 +169,7 @@ if st.sidebar.button('Prediction'):
     st.header('Customer Churn Predictions')
     label = 'Churned' if prediction > 0.5 else 'Remain'
     st.write(f'Prediction Label: **{label}**')
-    st.write(f'Prediction Probability: **{prediction}**')
+    st.write(f'Prediction Probability: **{prediction[0]}**')
 else:
     st.warning('Please Click on Prediction')
 st.write('---')
